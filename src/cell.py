@@ -1,0 +1,58 @@
+from geometry import *
+from window import Window
+
+class Cell():
+    def __init__(self,
+                 x1,y1,x2,y2,window, 
+                 has_left_wall = True,
+                 has_right_wall = True,
+                 has_top_wall = True,
+                 has_bottom_wall = True):
+        self.has_left_wall = has_left_wall
+        self.has_right_wall = has_right_wall
+        self.has_top_wall = has_top_wall
+        self.has_bottom_wall = has_bottom_wall
+        self.__x1 = x1
+        self.__y1 = y1
+        self.__x2 = x2
+        self.__y2 = y2
+        self.__win = window
+
+    def draw(self):
+
+        x1 = self.__x1
+        x2 = self.__x2
+        y1 = self.__y1
+        y2 = self.__y2
+        
+        
+        if self.has_bottom_wall:
+            line_to_draw  = Line(Point(x1, y2), Point(x2, y2))
+            self.__win.draw_line(line_to_draw, "black")
+        if self.has_left_wall:
+            line_to_draw  = Line(Point(x1, y1), Point(x1, y2))
+            self.__win.draw_line(line_to_draw, "black")
+        if self.has_right_wall:
+            line_to_draw  = Line(Point(x2, y1), Point(x2, y2))
+            self.__win.draw_line(line_to_draw, "black")
+        if self.has_top_wall:
+            line_to_draw  = Line(Point(x1, y1), Point(x2, y1))
+            self.__win.draw_line(line_to_draw, "black")
+    
+    def get_center(self):
+        center_x = (self.__x1 + self.__x2) //2
+        center_y = (self.__y1 + self.__y2) //2
+
+        return Point(center_x,center_y)
+
+    def draw_move(self, to_cell, undo=False):
+        c1 = self.get_center()
+        c2 = to_cell.get_center()
+
+        color = "red"
+        if undo:
+            color = "gray"
+
+        line_to_draw = Line(c1,c2)
+        self.__win.draw_line(line_to_draw, color)
+        
