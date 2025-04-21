@@ -2,28 +2,23 @@ from geometry import *
 from window import Window
 
 class Cell():
-    def __init__(self,
-                 x1,y1,x2,y2,window, 
-                 has_left_wall = True,
-                 has_right_wall = True,
-                 has_top_wall = True,
-                 has_bottom_wall = True):
-        self.has_left_wall = has_left_wall
-        self.has_right_wall = has_right_wall
-        self.has_top_wall = has_top_wall
-        self.has_bottom_wall = has_bottom_wall
-        self.__x1 = x1
-        self.__y1 = y1
-        self.__x2 = x2
-        self.__y2 = y2
-        self.__win = window
+    def __init__(self, win = None):
+        self.has_left_wall = True
+        self.has_right_wall = True
+        self.has_top_wall = True
+        self.has_bottom_wall = True
+        self._x1 = None
+        self._x2 = None
+        self._y1 = None
+        self._y2 = None
+        self.__win = None
 
-    def draw(self):
+    def draw(self, x1, y1, x2, y2):
 
-        x1 = self.__x1
-        x2 = self.__x2
-        y1 = self.__y1
-        y2 = self.__y2
+        self._x1 = x1
+        self._x2 = x2
+        self._y1 = y1
+        self._y2 = y2
         
         
         if self.has_bottom_wall:
