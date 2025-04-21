@@ -47,8 +47,8 @@ class Cell():
             self.__win.draw_line(line_to_draw, "white")
     
     def get_center(self):
-        center_x = (self.__x1 + self.__x2) //2
-        center_y = (self.__y1 + self.__y2) //2
+        center_x = (self._x1 + self._x2) //2
+        center_y = (self._y1 + self._y2) //2
 
         return Point(center_x,center_y)
 

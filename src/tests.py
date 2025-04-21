@@ -1,4 +1,6 @@
 import unittest
+import random
+
 from maze import Maze
 class Tests(unittest.TestCase):
     def test_maze_create_cells(self):
@@ -30,6 +32,19 @@ class Tests(unittest.TestCase):
             False
         )
 
+    def test_maze_reset(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        m1.break_entrance_and_exit()
+        
+        random_x = random.randrange(0,num_rows)
+        random_y = random.randrange(0,num_cols)
+
+        m1.cells[random_x][random_y].visited = True
+        m1.reset_cells_visited()
+
+        self.assertEqual(m1.cells[random_x][random_y].visited, False)
 
 if __name__ == "__main__":
     unittest.main()
