@@ -20,19 +20,30 @@ class Cell():
         self._y1 = y1
         self._y2 = y2
         
-        
+
+        line_to_draw  = Line(Point(x1, y2), Point(x2, y2))
         if self.has_bottom_wall:
-            line_to_draw  = Line(Point(x1, y2), Point(x2, y2))
             self.__win.draw_line(line_to_draw, "black")
+        else:
+            self.__win.draw_line(line_to_draw, "white")
+
+        line_to_draw  = Line(Point(x1, y1), Point(x1, y2))
         if self.has_left_wall:
-            line_to_draw  = Line(Point(x1, y1), Point(x1, y2))
             self.__win.draw_line(line_to_draw, "black")
+        else:
+            self.__win.draw_line(line_to_draw, "white")
+
+        line_to_draw  = Line(Point(x2, y1), Point(x2, y2))
         if self.has_right_wall:
-            line_to_draw  = Line(Point(x2, y1), Point(x2, y2))
             self.__win.draw_line(line_to_draw, "black")
+        else:
+            self.__win.draw_line(line_to_draw, "white")
+
+        line_to_draw  = Line(Point(x1, y1), Point(x2, y1))
         if self.has_top_wall:
-            line_to_draw  = Line(Point(x1, y1), Point(x2, y1))
             self.__win.draw_line(line_to_draw, "black")
+        else:
+            self.__win.draw_line(line_to_draw, "white")
     
     def get_center(self):
         center_x = (self.__x1 + self.__x2) //2
